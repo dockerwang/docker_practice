@@ -8,7 +8,6 @@
     "latex-codecogs",
     "prism",
     "-highlight",
-    "fontSettings",
     "betterchinese"
   ],
   "pluginsConfig": {
