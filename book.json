@@ -8,7 +8,8 @@
     "latex-codecogs",
     "prism",
     "-highlight",
-    "fontSettings"
+    "fontSettings",
+    "betterchinese"
   ],
   "pluginsConfig": {
     "autocover": {
