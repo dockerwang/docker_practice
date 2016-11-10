@@ -8,7 +8,7 @@
 
 ## 预安装
 
-Docker 支持 64 位、内核高于 3.10 的 Debian 操作系统，内核低于 3.10 将导致数据丢失和系统不稳定等问题。  
+Docker 支持 64 位、内核高于 3.10 的 Debian 操作系统，内核低于 3.10 将导致数据丢失和系统不稳定等问题。
 查看内核版本使用以下命令：
 
 ```
@@ -21,14 +21,14 @@ Docker 的 APT 仓库包含了 1.7.1 及以上版本的 Docker，安装前需要
 
 #### 1. 清理旧的仓库信息
 
-```sh
+```bash
  $ apt-get purge lxc-docker*
  $ apt-get purge docker.io*
 ```
 
 #### 2. 更新和安装软件包
 
-```sh
+```bash
  $ apt-get update
  $ apt-get install apt-transport-https ca-certificates
 ```
@@ -43,7 +43,7 @@ Docker 的 APT 仓库包含了 1.7.1 及以上版本的 Docker，安装前需要
 
 编辑文件 `/etc/apt/sources.list.d/docker.list`，清理已存在的信息，写入APT源地址内容。以下以 Debian Jessie 为例，非 Jessie 版本的系统注意修改为自己对应的代号。
 
-```sh
+```bash
 $ sudo cat <<EOF > /etc/apt/sources.list.d/docker.list
 deb https://apt.dockerproject.org/repo debian-jessie main
 EOF
@@ -102,7 +102,7 @@ $ apt-get upgrade docker-engine
 
 ## 卸载 Docker
 
-```sh
+```bash
 # 卸载软件包
 $ sudo apt-get purge docker-engine
 

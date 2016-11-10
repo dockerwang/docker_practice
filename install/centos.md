@@ -6,7 +6,7 @@ Docker 目前支持 CentOS 6.5 及以后的版本，推荐使用 CentOS 7 系统
 
 首先，也是要添加 yum 软件源。
 
-```sh
+```bash
 $ sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
 [dockerrepo]
 name=Docker Repository
@@ -18,7 +18,7 @@ EOF
 ```
 
 之后更新 yum 软件源缓存，并安装 docker-engine。
-```sh
+```bash
 $ sudo yum update
 $ sudo yum install -y docker-engine
 ```
@@ -27,11 +27,11 @@ $ sudo yum install -y docker-engine
 
 
 另外，也可以使用官方提供的脚本来安装 Docker。
-```sh
+```bash
 $ sudo curl -sSL https://get.docker.com/ | sh
 ```
 
 可以配置让 Docker 服务在系统启动后自动启动。
-```sh
+```bash
 $ sudo chkconfig docker on
 ```

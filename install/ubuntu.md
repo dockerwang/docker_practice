@@ -16,14 +16,14 @@ Docker 需要安装在 64 位的 x86 平台或 ARM 平台上（如[树莓派](ht
 
 用户可以通过如下命令检查自己的内核版本详细信息：
 
-```sh
+```bash
 $ uname -a
 Linux device 4.4.0-45-generic #66~14.04.1-Ubuntu SMP Wed Oct 19 15:05:38 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
 或者
 
-```sh
+```bash
 $ cat /proc/version
 Linux version 4.4.0-45-generic (buildd@lcy01-08) (gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) ) #66~14.04.1-Ubuntu SMP Wed Oct 19 15:05:38 UTC 2016
 ```
@@ -34,19 +34,19 @@ Linux version 4.4.0-45-generic (buildd@lcy01-08) (gcc version 4.8.4 (Ubuntu 4.8.
 
 ##### Ubuntu 12.04 LTS
 
-```sh
+```bash
 sudo apt-get install -y --install-recommends linux-generic-lts-trusty
 ```
 
 ##### Ubuntu 14.04 LTS
 
-```sh
+```bash
 sudo apt-get install -y --install-recommends linux-generic-lts-xenial
 ```
 
 升级完内核后不要忘记了重启以生效。
 
-```sh
+```bash
 sudo reboot
 ```
 
@@ -54,7 +54,7 @@ sudo reboot
 
 Docker 官方为了简化安装流程，提供了一套安装脚本，Ubuntu 系统上可以使用这套脚本安装：
 
-```sh
+```bash
 curl -sSL https://get.docker.com/ | sh
 ```
 
@@ -64,13 +64,13 @@ curl -sSL https://get.docker.com/ | sh
 
 #### 阿里云的安装脚本
 
-```sh
+```bash
 curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
 ```
 
 #### DaoCloud 的安装脚本
 
-```sh
+```bash
 curl -sSL https://get.daocloud.io/docker | sh
 ```
 
@@ -84,7 +84,7 @@ curl -sSL https://get.daocloud.io/docker | sh
 
 如果系统没有安装可选内核模块的话，可以执行下面的命令来安装可选内核模块包：
 
-```sh
+```bash
 $ sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
 ```
 
@@ -92,7 +92,7 @@ $ sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
 
 在 Ubuntu 12.04 桌面环境下，需要一些额外的软件包，可以用下面的命令安装。
 
-```sh
+```bash
 $ sudo apt-get install xserver-xorg-lts-trusty libgl1-mesa-glx-lts-trusty
 ```
 
@@ -104,14 +104,14 @@ $ sudo apt-get install xserver-xorg-lts-trusty libgl1-mesa-glx-lts-trusty
 
 *国内的一些软件源镜像（比如[阿里云](http://mirrors.aliyun.com/docker-engine/)）不是太在意系统安全上的细节，可能依旧使用不安全的 HTTP，对于这些源可以不执行这一步。*
 
-```sh
+```bash
 $ sudo apt-get update
 $ sudo apt-get install apt-transport-https ca-certificates
 ```
 
 为了确认所下载软件包的合法性，需要添加 Docker 官方软件源的 GPG 密钥。
 
-```sh
+```bash
 $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 ```
 
@@ -125,13 +125,13 @@ $ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 
 
 用下面的命令将 APT 源添加到 `source.list`（将其中的 `<REPO>` 替换为上表的值）：
 
-```sh
+```bash
 $ echo "<REPO>" | sudo tee /etc/apt/sources.list.d/docker.list
 ```
 
 添加成功后，更新 apt 软件包缓存。
 
-```sh
+```bash
 $ sudo apt-get update
 ```
 
@@ -139,7 +139,7 @@ $ sudo apt-get update
 
 在一切准备就绪后，就可以安装最新版本的 Docker 了，软件包名称为 `docker-engine`。
 
-```sh
+```bash
 $ sudo apt-get install docker-engine
 ```
 
@@ -149,13 +149,13 @@ $ sudo apt-get install docker-engine
 
 ##### Ubuntu 12.04/14.04
 
-```sh
+```bash
 $ sudo service docker start
 ```
 
 ##### Ubuntu 16.04
 
-```sh
+```bash
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
 ```
@@ -166,13 +166,13 @@ $ sudo systemctl start docker
 
 建立 `docker` 组：
 
-```sh
+```bash
 $ sudo groupadd docker
 ```
 
 将当前用户加入 `docker` 组：
 
-```sh
+```bash
 $ sudo usermod -aG docker $USER
 ```
 
@@ -180,20 +180,20 @@ $ sudo usermod -aG docker $USER
 
 在 Docker 使用期间，或者在 `docker info` 信息中，可能会看到下面的警告信息：
 
-```sh
+```bash
 WARNING: Your kernel does not support cgroup swap limit. WARNING: Your
 kernel does not support swap limit capabilities. Limitation discarded.
 ```
 
 如警告信息所说，这些内核功能没有启用，因此如果需要使用这些功能，需要启用这些功能。因此需要修改 GRUB 的配置文件 ` /etc/default/grub`，添加下面这个配置：
 
-```sh
+```bash
 GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
 ```
 
 然后不要忘记了更新 GRUB
 
-```sh
+```bash
 $ sudo update-grub
 ```
 
